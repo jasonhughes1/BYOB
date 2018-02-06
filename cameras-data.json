@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "nasa_id": 26,
     "name": "NAVCAM",
