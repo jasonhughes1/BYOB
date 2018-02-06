@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
       table.string('name');
       table.string('full_name');
       table.integer('rover_id');
-      table.integer('nasa_id')
+      table.integer('nasa_id');
 
       table.timestamps(true, true);
     }),
@@ -17,8 +17,8 @@ exports.up = function(knex, Promise) {
       table.string('earth_date');
       table.integer('sol');
       table.integer('nasa_id');
-      table.integer('cameras_id').unsigned()
-      table.foreign('cameras_id')
+      table.integer('cameras_id').unsigned();
+      table.foreign('cameras_id');
         .references('cameras.id');
 
       table.timestamps(true, true);
@@ -29,6 +29,6 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('photos'),
-    knex.schema.dropTable('projects')
+    knex.schema.dropTable('cameras')
   ]);
 };
