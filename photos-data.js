@@ -1,4 +1,4 @@
-module.exports = [
+const photosData = [
   {
     "img_src": "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/00002/opgs/edr/ncam/NLA_397671934EDR_F0010008AUT_04096M_.JPG",
     "nasa_id": 2096,
@@ -444,3 +444,5 @@ module.exports = [
     "earth_date": "2012-08-08"
   }
 ]
+
+module.exports = photosData;
