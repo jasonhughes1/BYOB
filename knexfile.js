@@ -3,11 +3,14 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/byob',
+    connection: 'postgres://localhost/curiosity',
     migrations: {
       directory: './db/migrations'
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    seeds: {
+      directory: './seeds/dev'
+    }
   },
   
   staging: {

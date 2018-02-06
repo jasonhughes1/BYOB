@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('cameras', function(table){
@@ -18,7 +17,7 @@ exports.up = function(knex, Promise) {
       table.integer('sol');
       table.integer('nasa_id');
       table.integer('cameras_id').unsigned();
-      table.foreign('cameras_id');
+      table.foreign('cameras_id')
         .references('cameras.id');
 
       table.timestamps(true, true);

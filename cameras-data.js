@@ -1,4 +1,4 @@
-module.exports = [
+const camerasData = [
   {
     "nasa_id": 26,
     "name": "NAVCAM",
@@ -444,3 +444,5 @@ module.exports = [
     "full_name": "Navigation Camera"
   }
 ]
+
+module.exports = camerasData;

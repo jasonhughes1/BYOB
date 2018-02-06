@@ -1,28 +1,41 @@
+const camerasData = require('../../cameras-data.js');
+const photosData = require('../../photos-data.js');
+
+const createCamera = (knex, camera) => {
+  return knex('cameras').insert({
+    nasa_id: camera.id,
+    name: camera.name,
+    rover_id: camera.rover_id,
+    full_name: camera.full_name
+  });
+};
+
+const createPhoto = (knex, photo) => {
+  return knex('photos').insert({
+    img_src: photo.img_src,
+    nasa_id: photo.id,
+    sol: photo.sol,
+    earth_date: photo.earth_date
+  });
+}
 
 exports.seed = function(knex, Promise) {
-
   return knex('photos').del()
     .then(() => knex('cameras').del())
-    .then(function() {
+    .then(() => {
+      let cameraPromises = [];
+      let photoPromises = [];
 
-      return Promise.all([
+      camerasData.forEach(camera => {
+        cameraPromises.push(createCamera(knex, camera));
+      });
 
-        knex('cameras').insert({
-          name: 'curiosity'
-        }, 'id')
-        .then(photos => {
-          return knex('photos').insert([
-            {
-              img_src: "http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01954/opgs/edr/ncam/NRB_570959149EDR_F0680214NCAM00207M_.JPG",
-              earth_date: "2018-02-03",
-              sol: 1954,
-              nasa_id: 650529,
-              cameras_id: photos[0]
-            }
-          ])
-        })
-        .then(() => console.log('Seeding complete'))
-        .catch(error => console.log(`Error seeding data: ${error}`))
-      ])
-    });
+      photosData.forEach(photo => {
+        photoPromises.push(createPhoto(knex, photo));
+      });
+
+      return Promise.all([...cameraPromises, ...photoPromises]);
+    })
+    .then(() => console.log('Seeding complete'))
+    .catch(error => console.log(`Error seeding data: ${error}`))
 };
