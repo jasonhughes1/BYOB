@@ -1,4 +1,6 @@
-const camerasData = [
+const camerasData =
+
+[
   {
     "name": "FHAZ",
     "full_name": "Front Hazard Avoidance Camera",
@@ -41,6 +43,6 @@ const camerasData = [
     "rover_id": 5,
     "rover_name": "Curiosity"
   }
-];
+]
 
 module.exports = camerasData;
