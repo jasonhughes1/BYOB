@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/jasonhughes1/BYOB/issues"
   },
-  "homepage": "https://github.com/jasonhughes1/BYOB#readme"
+  "homepage": "https://github.com/jasonhughes1/BYOB#readme",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
 }
