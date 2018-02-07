@@ -32,8 +32,8 @@ app.get('/', (request, response) => {
 //get all cameras
 app.get('/api/v1/cameras', (request, response) => {
   database('cameras').select()
-    .then(projects => {
-      return response.status(200).json({ projects });
+    .then(cameras => {
+      return response.status(200).json({ cameras });
     })
     .catch(error => {
       return response.status(500).json({ error })
@@ -43,8 +43,8 @@ app.get('/api/v1/cameras', (request, response) => {
 //get all photos
 app.get('/api/v1/photos', (request, response) => {
   database('photos').select()
-  .then(projects => {
-    return response.status(200).json({ projects });
+  .then(photos => {
+    return response.status(200).json({ photos });
   })
   .catch(error => {
     return response.status(500).json({ error })
