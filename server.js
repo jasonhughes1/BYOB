@@ -29,7 +29,7 @@ app.get('/', (request, response) => {
   return response.send('curiosity')
 })
 
-
+//get all cameras
 app.get('/api/v1/cameras', (request, response) => {
   database('cameras').select()
     .then(projects => {
@@ -40,6 +40,36 @@ app.get('/api/v1/cameras', (request, response) => {
     })
 });
 
+//get all photos
+app.get('/api/v1/photos', (request, response) => {
+  database('photos').select()
+  .then(projects => {
+    return response.status(200).json({ projects });
+  })
+  .catch(error => {
+    return response.status(500).json({ error })
+  })
+})
+
+//get photos based on camera ID
+app.get('/api/v1/cameras/:camerasID/photo', (request, response) => {
+  const { camerasID } = request.params;
+  database('photo').where('cameras_id', camerasID).select()
+    .then(photo => {
+      if(photo.length) {
+        return response.status(200).json({ photo })
+      } else {
+        return response.status(404).json({
+          error: `Did not find photo from camera with id ${camerasID}`
+        })
+      }
+    })
+    .catch(error => {
+      return reponse.status(500).json({ error })
+    })
+})
+
+//create a camera with new unique id
 app.post('/api/v1/cameras', (request, response) => {
   const cameras = request.body;
 
@@ -59,16 +89,7 @@ app.post('/api/v1/cameras', (request, response) => {
     })
 })
 
-app.get('/api/v1/photos', (request, response) => {
-  database('photos').select()
-    .then(projects => {
-      return response.status(200).json({ projects });
-    })
-    .catch(error => {
-      return response.status(500).json({ error })
-    })
-})
-
+//create a photo with new unique id
 app.post('/api/v1/photos', (request, response) => {
   const photos = request.body;
 
@@ -87,8 +108,3 @@ app.post('/api/v1/photos', (request, response) => {
       return response.status(500).json({ error })
     })
 })
-
-
-//get all photos
-
-//get all cameras
