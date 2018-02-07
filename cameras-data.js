@@ -1,448 +1,46 @@
 const camerasData = [
   {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
+    "name": "FHAZ",
+    "full_name": "Front Hazard Avoidance Camera",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   },
   {
-    "nasa_id": 26,
     "name": "NAVCAM",
+    "full_name": "Navigation Camera",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   },
   {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
-    "rover_id": 5,
-    "full_name": "Navigation Camera"
-  },
-  {
-    "nasa_id": 26,
-    "name": "NAVCAM",
+    "name": "MAST",
+    "full_name": "Mast Camera",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   },
   {
-    "nasa_id": 26,
-    "name": "NAVCAM",
+    "name": "CHEMCAM",
+    "full_name": "Chemistry and Camera Complex",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   },
   {
-    "nasa_id": 26,
-    "name": "NAVCAM",
+    "name": "MAHLI",
+    "full_name": "Mars Hand Lens Imager",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   },
   {
-    "nasa_id": 26,
-    "name": "NAVCAM",
+    "name": "MARDI",
+    "full_name": "Mars Descent Imager",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   },
   {
-    "nasa_id": 26,
-    "name": "NAVCAM",
+    "name": "RHAZ",
+    "full_name": "Rear Hazard Avoidance Camera",
     "rover_id": 5,
-    "full_name": "Navigation Camera"
+    "rover_name": "Curiosity"
   }
-]
+];
 
 module.exports = camerasData;
