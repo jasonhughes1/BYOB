@@ -9,10 +9,10 @@ module.exports = {
     },
     useNullAsDefault: true,
     seeds: {
-      directory: './seeds/dev'
+      directory: './db/seeds/dev'
     }
   },
-  
+
   staging: {
     client: 'postgresql',
     connection: {

@@ -1,5 +1,5 @@
-const camerasData = require('../../cameras-data.js');
-const photosData = require('../../photos-data.js');
+const camerasData = require('../../../data/cameras-data.js');
+const photosData = require('../../../data/photos-data.js');
 
 const createCamera = (knex, camera) => {
   return knex('cameras').insert({
