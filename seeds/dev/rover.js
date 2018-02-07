@@ -3,17 +3,17 @@ const photosData = require('../../photos-data.js');
 
 const createCamera = (knex, camera) => {
   return knex('cameras').insert({
-    nasa_id: camera.id,
     name: camera.name,
-    rover_id: camera.rover_id,
-    full_name: camera.full_name
+    full_name: camera.full_name,
+    rover_id: camera.rover_id
+    // rover_name: camera.rover_name
   });
 };
 
 const createPhoto = (knex, photo) => {
   return knex('photos').insert({
     img_src: photo.img_src,
-    nasa_id: photo.id,
+    nasa_id: photo.nasa_id,
     sol: photo.sol,
     earth_date: photo.earth_date
   });

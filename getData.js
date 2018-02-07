@@ -1,7 +1,7 @@
 var request = require('request');
 const fs = require('fs');
 
-request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=2&api_key=vVkXSH113beoeZFC7jRKhtkE5DdHarYabDtrcMsH', function (error, response, body) {
+request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&api_key=vVkXSH113beoeZFC7jRKhtkE5DdHarYabDtrcMsH', function (error, response, body) {
   const photos = JSON.parse(body).photos.map(photo => {
     return {
       img_src: photo.img_src,
@@ -10,26 +10,26 @@ request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=2&a
       earth_date: photo.earth_date
     }
   });
-  const cameras = JSON.parse(body).photos.map(photo => {
+  const cameras = JSON.parse(body).photos[0].rover.cameras.map(camera => {
     return {
-      nasa_id: photo.camera.id,
-      name: photo.camera.name,
-      rover_id: photo.camera.rover_id,
-      full_name: photo.camera.full_name
+      name: camera.name,
+      full_name: camera.full_name,
+      rover_id: 5,
+      rover_name: 'Curiosity'
     }
   });
 
   const photoData = JSON.stringify(photos, null, 2);
   const cameraData = JSON.stringify(cameras, null, 2);
 
-  fs.writeFile('./photos-data.json', photoData, 'utf-8', (error) => {
+  fs.writeFile('./photos-data.js', photoData, 'utf-8', (error) => {
     if(error) {
       console.log(error);
     }
     console.log('File Saved!');
   })
 
-  fs.writeFile('./cameras-data.json', cameraData, 'utf-8', (error) => {
+  fs.writeFile('./cameras-data.js', cameraData, 'utf-8', (error) => {
     if(error) {
       console.log(error);
     }
