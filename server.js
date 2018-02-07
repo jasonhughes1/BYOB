@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const jwt = require('jsonwebtoken');
 
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 
 const database = require('knex')(configuration);
+
+const secretKey = process.env.BYOB_SECRET_KEY;
 
 app.set('port', process.env.PORT || 3000);
 
@@ -17,6 +20,23 @@ const requireHTTPS = (req, res, next) => {
     return res.redirect('https://' + req.get('host') + req.rul);
   }
   next();
+};
+
+const checkAuth = (request, response, next) => {
+  const requestToken = request.headers.token;
+
+  if (!requestToken) {
+    return response.status(403).json({ error: 'You must be authorized to hit this endpoint.' });
+  }
+
+  jwt.verify(requestToken, secretKey, (error, decoded) => {
+    if (error) {
+      return response.status(403).json({ error: 'Please send a valid token.' })
+    } else {
+      next();
+    }
+  });
+
 };
 
 app.locals.title = 'BYOB';
@@ -52,12 +72,12 @@ app.get('/api/v1/photos', (request, response) => {
 })
 
 //get photos based on camera ID
-app.get('/api/v1/cameras/:camerasID/photo', (request, response) => {
+app.get('/api/v1/cameras/:camerasID/photos', (request, response) => {
   const { camerasID } = request.params;
-  database('photo').where('cameras_id', camerasID).select()
-    .then(photo => {
-      if(photo.length) {
-        return response.status(200).json({ photo })
+  database('photos').where('cameras_id', camerasID).select()
+    .then(photos => {
+      if(photos.length) {
+        return response.status(200).json({ photos })
       } else {
         return response.status(404).json({
           error: `Did not find photo from camera with id ${camerasID}`
@@ -65,12 +85,18 @@ app.get('/api/v1/cameras/:camerasID/photo', (request, response) => {
       }
     })
     .catch(error => {
-      return reponse.status(500).json({ error })
+      return response.status(500).json({ error })
     })
-})
+});
+
+// send JWT token based on request.body
+app.post('/api/v1/authenticate', (request, response) => {
+  const token = jwt.sign(request.body, secretKey);
+  response.status(200).json({ token });
+});
 
 //create a camera with new unique id
-app.post('/api/v1/cameras', (request, response) => {
+app.post('/api/v1/cameras', checkAuth, (request, response) => {
   const cameras = request.body;
 
   for(let requiredParameter of ['name']) {
@@ -90,7 +116,7 @@ app.post('/api/v1/cameras', (request, response) => {
 })
 
 //create a photo with new unique id
-app.post('/api/v1/photos', (request, response) => {
+app.post('/api/v1/photos', checkAuth, (request, response) => {
   const photos = request.body;
 
   for(let requiredParameter of ['earth_date']) {
