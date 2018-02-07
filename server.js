@@ -89,6 +89,27 @@ app.get('/api/v1/cameras/:camerasID/photos', (request, response) => {
     })
 });
 
+// specific get request with nasa_id paramater
+app.get('/api/v1/photo/', (request, response) => {
+  const { nasa_id } = request.query;
+
+  if (!nasa_id) {
+    return response.status(422).json({error: 'Please input a nasa_id query parameter.'})
+  }
+
+  database('photos').where('nasa_id', nasa_id).select()
+    .then(photo => {
+      if (photo[0]) {
+        return response.status(200).json({ photo: photo[0] });
+      } else {
+        return response.status(404).json({ error: `No photo with id of ${nasa_id} was found.`})
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    })
+});
+ 
 // send JWT token based on request.body
 app.post('/api/v1/authenticate', (request, response) => {
   const token = jwt.sign(request.body, secretKey);
