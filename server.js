@@ -59,6 +59,35 @@ app.post('/api/v1/cameras', (request, response) => {
     })
 })
 
+app.get('/api/v1/photos', (request, response) => {
+  database('photos').select()
+    .then(projects => {
+      return response.status(200).json({ projects });
+    })
+    .catch(error => {
+      return response.status(500).json({ error })
+    })
+})
+
+app.post('/api/v1/photos', (request, response) => {
+  const photos = request.body;
+
+  for(let requiredParameter of ['earth_date']) {
+    if(!photos[requiredParameter]) {
+      return response.status(422).json({
+        error: `You are missing the required parameter ${requiredParameter}`
+      })
+    }
+  }
+  database('photos').insert(photos, 'id')
+    .then(photos => {
+      return response.status(201).json({ id: photos[0]})
+    })
+    .catch(error => {
+      return response.status(500).json({ error })
+    })
+})
+
 
 //get all photos
 
