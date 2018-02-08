@@ -41,8 +41,8 @@ const checkAuth = (request, response, next) => {
 
 app.locals.title = 'BYOB';
 
-app.listen(app.get('port'), () => {
-
+const httpServer = app.listen(app.get('port'), () => {
+console.log(`byob running on ${app.get('port')}`);
 })
 
 app.get('/', (request, response) => {
@@ -192,8 +192,6 @@ app.patch('/api/v1/photos/:photoID', checkAuth, (request, response) => {
 });
 
 
-
-
 //delete a photo
 app.delete('/api/v1/photos/:id', (request, response) => {
   const { id } = request.params;
@@ -218,9 +216,11 @@ app.delete('/api/v1/cameras/:id', (request, response) => {
     if(camera) {
       return response.sendStatus(204);
     } else {
-      return response.status(422).json({error: `Camera with the id of ${id} was not found`});  
+      return response.status(422).json({error: `Camera with the id of ${id} was not found`});
     }
   })
   .catch(error => response.status(500).json({ error }));
 
 });
+
+module.exports = httpServer;
