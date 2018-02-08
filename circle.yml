@@ -6,16 +6,3 @@ machine:
 
 environment:
   DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/curiosity_tests
-
-database:
-  override:
-    - sudo -u postgres psql -p 5432 -c "create database curiosity_tests;"
-    - knex migrate:latest
-
-test:
-  override:
-    - mocha --exit
-deployment:
-  branch: master
-  heroku:
-    appname: BYOB-Curiosity
