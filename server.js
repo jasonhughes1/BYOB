@@ -23,20 +23,23 @@ const requireHTTPS = (req, res, next) => {
 };
 
 const checkAuth = (request, response, next) => {
-  const requestToken = request.headers.token;
+  if (environment !== 'test') {
+    const requestToken = request.headers.token;
 
-  if (!requestToken) {
-    return response.status(403).json({ error: 'You must be authorized to hit this endpoint.' });
-  }
-
-  jwt.verify(requestToken, secretKey, (error, decoded) => {
-    if (error) {
-      return response.status(403).json({ error: 'Please send a valid token.' })
-    } else {
-      next();
+    if (!requestToken) {
+      return response.status(403).json({ error: 'You must be authorized to hit this endpoint.' });
     }
-  });
 
+    jwt.verify(requestToken, secretKey, (error, decoded) => {
+      if (error) {
+        return response.status(403).json({ error: 'Please send a valid token.' })
+      } else {
+        next();
+      }
+    });
+  } else {
+    next();
+  }
 };
 
 app.locals.title = 'BYOB';
@@ -44,11 +47,6 @@ app.locals.title = 'BYOB';
 const httpServer = app.listen(app.get('port'), () => {
 console.log(`byob running on ${app.get('port')}`);
 });
-
-app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-})
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -70,6 +68,7 @@ app.post('/api/v1/authenticate', (request, response) => {
     return response.status(422).json({ error: `${email} is not a turing email address` })
   }
 })
+
 
 //get all cameras
 app.get('/api/v1/cameras', (request, response) => {
@@ -124,7 +123,7 @@ app.get('/api/v1/photo/', (request, response) => {
       if (photo[0]) {
         return response.status(200).json({ photo: photo[0] });
       } else {
-        return response.status(404).json({ error: `No photo with id of ${nasa_id} was found.`})
+        return response.status(404).json({ error: `No photo with nasa_id of ${nasa_id} was found.`})
       }
     })
     .catch(error => {
