@@ -120,7 +120,7 @@ app.post('/api/v1/authenticate', (request, response) => {
 app.post('/api/v1/cameras', checkAuth, (request, response) => {
   const cameras = request.body;
 
-  for(let requiredParameter of ['name']) {
+  for(let requiredParameter of ['name', 'full_name']) {
     if(!cameras[requiredParameter]) {
       return response.status(422).json({
         error: `You are missing the required parameter ${requiredParameter}`
@@ -140,11 +140,11 @@ app.post('/api/v1/cameras', checkAuth, (request, response) => {
 app.post('/api/v1/photos', checkAuth, (request, response) => {
   const photos = request.body;
 
-  for(let requiredParameter of ['earth_date']) {
-    if(!photos[requiredParameter]) {
+  for (let requiredParameter of ['img_src', 'earth_date', 'sol', 'nasa_id']) {
+    if (!photos[requiredParameter]) {
       return response.status(422).json({
         error: `You are missing the required parameter ${requiredParameter}`
-      })
+      });
     }
   }
   database('photos').insert(photos, 'id')
@@ -154,7 +154,45 @@ app.post('/api/v1/photos', checkAuth, (request, response) => {
     .catch(error => {
       return response.status(500).json({ error })
     })
-})
+
+});
+
+app.patch('/api/v1/cameras/:cameraID', checkAuth, (request, response) => {
+  const { cameraID } = request.params;
+  const property = Object.keys(request.body);
+
+  database('cameras').where('id', cameraID).update( request.body )
+    .then(camera => {
+      if (camera) {
+        return response.status(201).json({ success: `Updated camera ${cameraID}'s ${property}.`});
+      } else {
+        return response.status(404).json({ error: `No camera with id ${cameraID} found.`});
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    })
+});
+
+app.patch('/api/v1/photos/:photoID', checkAuth, (request, response) => {
+  const { photoID } = request.params;
+  const property = Object.keys(request.body);
+
+  database('photos').where('id', photoID).update( request.body )
+    .then(photo => {
+      if (photo) {
+        return response.status(201).json({ success: `Updated photo ${photoID}'s ${property}.`});
+      } else {
+        return response.status(404).json({error: `No photo with id ${photoID} found.`});
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    })
+});
+
+
+
 
 //delete a photo
 app.delete('/api/v1/photos/:id', (request, response) => {
@@ -184,4 +222,5 @@ app.delete('/api/v1/cameras/:id', (request, response) => {
     }
   })
   .catch(error => response.status(500).json({ error }));
+
 });
