@@ -63,8 +63,12 @@ app.post('/api/v1/authenticate', (request, response) => {
     });
   }
   const admin = email.includes('@turing.io');
-  const token = jwt.sign({ admin }, secretKey);
-  return response.status(201).json({ token });
+  if(admin){
+    const token = jwt.sign({ admin }, secretKey);
+    return response.status(201).json({ token });
+  } else {
+    return response.status(422).json({ error: `${email} is not a turing email address` })
+  }
 })
 
 //get all cameras

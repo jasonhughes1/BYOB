@@ -15,7 +15,16 @@ const requestJWT = (event) => {
       appName: app.value
     })
   })
-    .then(res => res.json())
+
+    .then(res => {
+      if(res.status === 201) {
+        return res.json()
+      } else {
+        return {
+          token: 'Please enter a Turing.io email'
+        }
+      }
+    })
     .then(parsedRes => {
       console.log(parsedRes);
       accessToken.innerHTML = '<h2>Your JWT is:</h2> ' + parsedRes.token;
