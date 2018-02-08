@@ -17,16 +17,35 @@
 form {
   display: flex;
   flex-direction: column;
+  font-family: sans-serif;
   justify-content: center;
 }
 
+input,
+button {
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 5px;
+}
+
 .access-token-container {
+  /*align-items: center;*/
+  font-family: sans-serif;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  color: red;
+  color: midnightblue;
   margin-top: 40px;
-  background-color: lightgrey;
-  height: 200px;
+  background-color: #D3D3D3;
+  padding: 20px;
+  width: 95%;
+}
+
+h2 {
+  margin-top: 2px;
+}
+
+p {
+  margin: 2px;
 }

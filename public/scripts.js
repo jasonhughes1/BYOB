@@ -21,8 +21,20 @@ const requestJWT = (event) => {
     return res.json();
   })
   .then(parsedRes => {
-    console.log(parsedRes);
-    accessToken.innerHTML = '<h2>Your JWT is:</h2> ' + parsedRes.token;
+    if (parsedRes.token.length > 100) {
+      let result = parsedRes.token.split('.');
+      accessToken.innerHTML = `
+        <h2>Your JWT is: </h2>
+        <p>${result[0]}.</p>
+        <p>${result[1]}.</p>
+        <p>${result[2]}</p>
+      `;
+
+    } else {
+      accessToken.innerHTML = `<h2>Your JWT is:</h2> <p>${parsedRes.token}</p>`;
+    }
+
+
   });
 };
 
