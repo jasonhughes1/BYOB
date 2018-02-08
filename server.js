@@ -55,19 +55,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/api/v1/authenticate', (request, response) => {
   const { email, appName } = request.body;
 
-  if(!email || !appName) {
-    return response.status(422).json({
-      error: `Missing email, app name, or both!`,
-    });
+  for(let requiredParameter of ['email', 'appName']) {
+    if(!request.body[requiredParameter]) {
+      return response.status(422).json({
+        token: `You are missing the required parameter ${requiredParameter}`
+      });
+    }
   }
+
   const admin = email.includes('@turing.io');
+
   if(admin){
     const token = jwt.sign({ admin }, secretKey);
     return response.status(201).json({ token });
   } else {
-    return response.status(422).json({ error: `${email} is not a turing email address` })
+    return response.status(422).json({ token: `${email} is not a turing email address` })
   }
-})
+});
 
 
 //get all cameras
