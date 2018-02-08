@@ -120,7 +120,7 @@ app.post('/api/v1/authenticate', (request, response) => {
 app.post('/api/v1/cameras', checkAuth, (request, response) => {
   const cameras = request.body;
 
-  for(let requiredParameter of ['name']) {
+  for(let requiredParameter of ['name', 'full_name']) {
     if(!cameras[requiredParameter]) {
       return response.status(422).json({
         error: `You are missing the required parameter ${requiredParameter}`
@@ -140,7 +140,7 @@ app.post('/api/v1/cameras', checkAuth, (request, response) => {
 app.post('/api/v1/photos', checkAuth, (request, response) => {
   const photos = request.body;
 
-  for(let requiredParameter of ['earth_date']) {
+  for(let requiredParameter of ['img_src', 'earth_date', 'sol', 'nasa_id']) {
     if(!photos[requiredParameter]) {
       return response.status(422).json({
         error: `You are missing the required parameter ${requiredParameter}`
