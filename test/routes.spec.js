@@ -43,13 +43,73 @@ describe('JWT authentication', () => {
     server.close(done);
   });
 
-  it.skip('should GET a JWT token if the user has @turing.io email', () => {
-
+  it('should GET a JWT token if the user has @turing.io email', () => {
+    return chai.request(server)
+    .post('/api/v1/authenticate')
+    .send({
+      appName: 'app',
+      email: 'tom@turing.io'
+    })
+    .then(response => {
+      response.should.have.status(201);
+      response.body.should.be.a('object');
+      response.body.should.have.property('token');
+    })
+    .catch(error => {
+      console.log(error);
+    })
   });
 
-  it.skip('should not return a JWT token to a different email', () => {
-
+  it('should return error message if the email is not from turing', () => {
+    return chai.request(server)
+    .post('/api/v1/authenticate')
+    .send({
+      appName: 'app',
+      email: 'tom@gmail.com'
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        error.response.should.have.status(422);
+        error.response.body.should.be.a('object');
+        error.response.body.token.should.equal('tom@gmail.com is not a turing email address');
+      })
   });
+
+  it('should return error message if app name is missing', () => {
+    return chai.request(server)
+    .post('/api/v1/authenticate')
+    .send({
+      appName: '',
+      email: 'tom@turing.io'
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      error.response.should.have.status(422);
+      error.response.body.should.be.a('object');
+      error.response.body.token.should.equal('You are missing the required parameter appName');
+    })
+  })
+
+  it('should return error message if email is missing', () => {
+    return chai.request(server)
+    .post('/api/v1/authenticate')
+    .send({
+      appName: 'app',
+      email: ''
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      error.response.should.have.status(422);
+      error.response.body.should.be.a('object');
+      error.response.body.token.should.equal('You are missing the required parameter email');
+    })
+  })
 });
 
 describe('API Routes', () => {
@@ -394,7 +454,7 @@ describe('API Routes', () => {
         error.response.body.error.should.equal('No camera with id 10000000 found.');
       })
     });
-    
+
   });
 
   describe('PATCH /api/v1/photos/:photoID', () => {
@@ -510,6 +570,5 @@ describe('API Routes', () => {
         })
       })
     });
-
   });
 });
