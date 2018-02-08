@@ -109,7 +109,7 @@ app.get('/api/v1/photo/', (request, response) => {
       return response.status(500).json({ error });
     })
 });
- 
+
 // send JWT token based on request.body
 app.post('/api/v1/authenticate', (request, response) => {
   const token = jwt.sign(request.body, secretKey);
@@ -155,3 +155,33 @@ app.post('/api/v1/photos', checkAuth, (request, response) => {
       return response.status(500).json({ error })
     })
 })
+
+//delete a photo
+app.delete('/api/v1/photos/:id', (request, response) => {
+  const { id } = request.params;
+
+  database('photos').where({ id }).del()
+    .then((photo) => {
+      if(photo) {
+        return response.sendStatus(204);
+      } else {
+        return response.status(422).json({error: `Photo with the id of ${id} was not found`});
+      }
+    })
+    .catch(error => response.status(500).json({ error }));
+});
+
+//delete a camera
+app.delete('/api/v1/cameras/:id', (request, response) => {
+  const { id }= request.params;
+
+  database('cameras').where({ id }).del()
+  .then((camera) => {
+    if(camera) {
+      return response.sendStatus(204);
+    } else {
+      return response.status(422).json({error: `Camera with the id of ${id} was not found`});  
+    }
+  })
+  .catch(error => response.status(500).json({ error }));
+});
