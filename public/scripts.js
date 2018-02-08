@@ -10,32 +10,30 @@ const requestJWT = (event) => {
     headers: {
       'content-type' : 'application/json'
     },
-    body: 
+    body:
       JSON.stringify({
         email: email.value,
         appName: app.value
       })
   })
 
-  .then(res => {
-    return res.json();
-  })
-  .then(parsedRes => {
-    if (parsedRes.token.length > 100) {
-      let result = parsedRes.token.split('.');
-      accessToken.innerHTML = `
+    .then(res => {
+      return res.json();
+    })
+    .then(parsedRes => {
+      if (parsedRes.token.length > 100) {
+        let result = parsedRes.token.split('.');
+        accessToken.innerHTML = `
         <h2>Your JWT is: </h2>
         <p>${result[0]}.</p>
         <p>${result[1]}.</p>
         <p>${result[2]}</p>
       `;
 
-    } else {
-      accessToken.innerHTML = `<h2>Your JWT is:</h2> <p>${parsedRes.token}</p>`;
-    }
-
-
-  });
+      } else {
+        accessToken.innerHTML = `<h2>Your JWT is:</h2> <p>${parsedRes.token}</p>`;
+      }
+    });
 };
 
 
