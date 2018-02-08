@@ -1,0 +1,32 @@
+
+* {
+  font-family: 'Bree Serif', serif;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.access-token-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  color: red;
+  margin-top: 40px;
+  background-color: lightgrey;
+  height: 200px;
+}

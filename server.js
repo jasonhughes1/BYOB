@@ -48,15 +48,27 @@ const httpServer = app.listen(app.get('port'), () => {
 console.log(`byob running on ${app.get('port')}`);
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // send JWT token based on request.body
 app.post('/api/v1/authenticate', (request, response) => {
-  const token = jwt.sign(request.body, secretKey);
-  response.status(200).json({ token });
-});
+  const { email, appName } = request.body;
 
-app.get('/', (request, response) => {
-  return response.sendFile(path.join(__dirname + '/public/index.html'));
-});
+  if(!email || !appName) {
+    return response.status(422).json({
+      error: `Missing email, app name, or both!`,
+    });
+  }
+  const admin = email.includes('@turing.io');
+  if(admin){
+    const token = jwt.sign({ admin }, secretKey);
+    return response.status(201).json({ token });
+  } else {
+    return response.status(422).json({ error: `${email} is not a turing email address` })
+  }
+})
+
 
 //get all cameras
 app.get('/api/v1/cameras', (request, response) => {
