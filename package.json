@@ -5,7 +5,8 @@
   "main": "getData.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "eslint": "./node_modules/eslint/bin/eslint.js *.js ./test/*.js ./public/*.js ./data/*.js ./db/*.js ./db/seeds/*.js ./db/migrations/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
     "chai-http": "^3.0.0",
     "jsonwebtoken": "^8.1.1",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0"
   }
 }

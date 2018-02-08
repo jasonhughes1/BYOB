@@ -43,6 +43,6 @@ const camerasData =
     "rover_id": 5,
     "rover_name": "Curiosity"
   }
-]
+];
 
 module.exports = camerasData;

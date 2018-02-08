@@ -1,3 +1,4 @@
+/*eslint-disable max-len*/
 
 const photosData =
 [
@@ -1520,6 +1521,6 @@ const photosData =
     "sol": 1500,
     "earth_date": "2016-10-25"
   }
-]
+];
 
 module.exports = photosData;
