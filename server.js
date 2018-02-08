@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
-
 const database = require('knex')(configuration);
 
 const secretKey = process.env.BYOB_SECRET_KEY;
@@ -43,11 +43,11 @@ app.locals.title = 'BYOB';
 
 const httpServer = app.listen(app.get('port'), () => {
 console.log(`byob running on ${app.get('port')}`);
-})
+});
 
 app.get('/', (request, response) => {
-  return response.send('curiosity')
-})
+  return response.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 //get all cameras
 app.get('/api/v1/cameras', (request, response) => {
