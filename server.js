@@ -45,9 +45,27 @@ const httpServer = app.listen(app.get('port'), () => {
 console.log(`byob running on ${app.get('port')}`);
 });
 
-app.get('/', (request, response) => {
-  return response.sendFile(path.join(__dirname + '/public/index.html'));
-});
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// send JWT token based on request.body
+app.post('/api/v1/authenticate', (request, response) => {
+  const { email, appName } = request.body;
+
+  if(!email || !appName) {
+    return response.status(422).json({
+      error: `Missing email, app name, or both!`,
+    });
+  }
+  const admin = email.includes('@turing.io');
+  const token = jwt.sign({ admin }, secretKey);
+  return response.status(201).json({ token });
+})
 
 //get all cameras
 app.get('/api/v1/cameras', (request, response) => {
@@ -110,11 +128,6 @@ app.get('/api/v1/photo/', (request, response) => {
     })
 });
 
-// send JWT token based on request.body
-app.post('/api/v1/authenticate', (request, response) => {
-  const token = jwt.sign(request.body, secretKey);
-  response.status(200).json({ token });
-});
 
 //create a camera with new unique id
 app.post('/api/v1/cameras', checkAuth, (request, response) => {
