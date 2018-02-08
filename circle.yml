@@ -15,7 +15,9 @@ database:
 test:
   override:
     - mocha --exit
+
 deployment:
-  branch: master
-  heroku:
-    appname: BYOB-Curiosity
+  staging:
+    branch: master
+    heroku:
+      appname: BYOB-Curiosity
