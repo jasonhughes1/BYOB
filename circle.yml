@@ -9,5 +9,12 @@ environment:
 
 database:
   override:
-    - sudo -u postgres psql -p 5432 -c "CREATE DATABASE curiosity_tests;"
+    - createdb curiosity_tests
     - knex migrate:latest
+    - npm run eslint
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: byob-jk
