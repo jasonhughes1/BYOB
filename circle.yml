@@ -9,7 +9,7 @@ environment:
 
 database:
   override:
-    - createdb curiosity_tests
+    - createdb curiosity
     - knex migrate:latest
     - npm run eslint
 
