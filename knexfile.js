@@ -16,7 +16,7 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL + `?ssl=true`,
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: './db/migrations'
     },
     useNullAsDefault: true,
     seeds: {
@@ -28,7 +28,7 @@ module.exports = {
     connection: process.env.DATABASE_URL || 'postgres://localhost/curiosity_tests',
     useNullAsDefault: true,
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: './db/migrations'
     },
     seeds: {
       directory: './db/seeds/test'
