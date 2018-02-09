@@ -12,10 +12,6 @@ const knex = require('../db/knex');
 chai.use(chaiHttp);
 
 describe('Client Routes', () => {
-  afterEach(done => {
-    server.close(done);
-  });
-
   it('should return the homepage', () => {
     return chai.request(server)
       .get('/')
@@ -41,10 +37,6 @@ describe('Client Routes', () => {
 });
 
 describe('JWT authentication', () => {
-  afterEach(done => {
-    server.close(done);
-  });
-
   it('should GET a JWT token if the user has @turing.io email', () => {
     return chai.request(server)
       .post('/api/v1/authenticate')
@@ -119,12 +111,6 @@ describe('API Routes', () => {
     knex.seed.run()
       .then(() => done());
   });
-
-  afterEach(done => {
-    server.close(done);
-  });
-
-
 
   describe('GET /api/v1/cameras', () => {
     it('should GET all of the cameras', () => {
