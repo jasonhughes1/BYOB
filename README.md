@@ -101,7 +101,7 @@ Sample response:
 
 Parameters:
 | Name | Type | Description |
-| ---- | ---- | ------------|
+|------|------|-------------|
 | nasa_id | integer | To find a valid nasa_id, GET /api/v1/photos |
 
 Sample response: 
@@ -127,11 +127,9 @@ Send your JWT in the header of the request with the key "token".
 
 Send the following parameters in the body:
 | Name | Type | Description |
-| --- | --- | --------------|
+|------|---- |---------------|
 | name | string | Name of the new camera |
-| --- | --- | --------------|
 | full_name | string | Full name of the new camera |
-| --- | --- | --------------|
 
 ### Patch Endpoints (JWT Authorization Required):
 
