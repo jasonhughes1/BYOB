@@ -18,7 +18,10 @@ module.exports = {
     migrations: {
       directory: __dirname + '/db/migrations'
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    seeds: {
+      directory: './db/seeds/dev'
+    }
   },
   test: {
     client: 'pg',
