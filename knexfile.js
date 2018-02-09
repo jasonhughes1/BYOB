@@ -25,7 +25,7 @@ module.exports = {
   },
   test: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || 'postgres://localhost/curiosity_tests',
+    connection: 'postgresql://ubuntu:@127.0.0.1:5432/curiosity_tests' || 'postgres://localhost/curiosity_tests',
     useNullAsDefault: true,
     migrations: {
       directory: './db/migrations'
