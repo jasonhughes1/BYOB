@@ -5,8 +5,7 @@
 
 To get a JWT that allows access to POST, PATCH, and DELETE requests, please go to '/' and fill out the form with a turing.io email address and an app name.
 
-### Get Endpoints:
-
+### GET ENDPOINTS
 ### To receive a JSON object of camera data
 `GET /api/v1/cameras`
 
@@ -71,19 +70,6 @@ Sample response:
 
 Sample response:
 ```
-
-```
-
-### To receive a JSON object of one photo in particular
-`GET /api/v1/photo?{nasa_id}`
-
-Parameters:
-| Name | Type | Description |
-| ---- | ---- | ------------|
-| nasa_id | integer | To find a valid nasa_id, GET /api/v1/photos |
-
-Sample response: 
-```
 {
   "photos": [
     {
@@ -110,7 +96,42 @@ Sample response:
 }
 ```
 
+### To receive a JSON object of one photo in particular
+`GET /api/v1/photo?{nasa_id}`
+
+Parameters:
+| Name | Type | Description |
+| ---- | ---- | ------------|
+| nasa_id | integer | To find a valid nasa_id, GET /api/v1/photos |
+
+Sample response: 
+```
+{
+  "photo": {
+    "id": 176260,
+    "img_src": "http://mars.jpl.nasa.gov/msl-raw-images/msss/01500/mcam/1500MR0076020040404393E01_DXXX.jpg",
+    "earth_date": "2016-10-25",
+    "sol": 1500,
+    "nasa_id": 594013,
+    "cameras_id": 5839,
+    "created_at": "2018-02-08T22:59:43.738Z",
+    "updated_at": "2018-02-08T22:59:43.738Z"
+  }
+}
+```
+
 ### Post Endpoints (JWT Authorization Required):
+`POST /api/v1/cameras`
+
+Send your JWT in the header of the request with the key "token".
+
+Send the following parameters in the body:
+| Name | Type | Description |
+| --- | --- | --------------|
+| name | string | Name of the new camera |
+| --- | --- | --------------|
+| full_name | string | Full name of the new camera |
+| --- | --- | --------------|
 
 ### Patch Endpoints (JWT Authorization Required):
 
