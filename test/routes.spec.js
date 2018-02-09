@@ -23,16 +23,16 @@ describe('Client Routes', () => {
         response.should.have.status(200);
         response.should.be.html;
       })
-      .catch(response => {
-        console.log(response);
+      .catch(() => {
+        console.log('response');
       });
   });
 
   it('should return a 404 for a route that does not exist', () => {
     return chai.request(server)
       .get('/nothere!')
-      .then(response => {
-        console.log(response);
+      .then(() => {
+        console.log('response');
       })
       .catch(response => {
         response.should.have.status(404);
@@ -57,8 +57,8 @@ describe('JWT authentication', () => {
         response.body.should.be.a('object');
         response.body.should.have.property('token');
       })
-      .catch(error => {
-        console.log(error);
+      .catch(() => {
+        console.log('error');
       });
   });
 
@@ -69,8 +69,8 @@ describe('JWT authentication', () => {
         appName: 'app',
         email: 'tom@gmail.com'
       })
-      .then(response => {
-        console.log(response);
+      .then(() => {
+        console.log('response');
       })
       .catch(error => {
         error.response.should.have.status(422);
@@ -86,8 +86,8 @@ describe('JWT authentication', () => {
         appName: '',
         email: 'tom@turing.io'
       })
-      .then(response => {
-        console.log(response);
+      .then(() => {
+        console.log('response');
       })
       .catch(error => {
         error.response.should.have.status(422);
@@ -103,8 +103,8 @@ describe('JWT authentication', () => {
         appName: 'app',
         email: ''
       })
-      .then(response => {
-        console.log(response);
+      .then(() => {
+        console.log('response');
       })
       .catch(error => {
         error.response.should.have.status(422);
@@ -146,8 +146,8 @@ describe('API Routes', () => {
     it('should return 404 status if the url is mistyped', () => {
       return chai.request(server)
         .get('/api/v1/camras')
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          console.log('response');
         })
         .catch(response => {
           response.should.have.status(404);
@@ -178,8 +178,8 @@ describe('API Routes', () => {
     it('should return 404 status if the url is mistyped', () => {
       return chai.request(server)
         .get('/api/v1/photoss')
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          console.log('response');
         })
         .catch(response => {
           response.should.have.status(404);
@@ -217,8 +217,8 @@ describe('API Routes', () => {
     it('should provide error message if camera id does not exist', () => {
       return chai.request(server)
         .get('/api/v1/cameras/10000000/photos')
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(404);
@@ -230,8 +230,8 @@ describe('API Routes', () => {
     it('should return 404 status if the url is mistyped', () => {
       return chai.request(server)
         .get('/api/v1/camerass/1/photos')
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          console.log('response');
         })
         .catch(response => {
           response.should.have.status(404);
@@ -252,8 +252,8 @@ describe('API Routes', () => {
     it('should return error message if no nasa_id query is provided', () => {
       return chai.request(server)
         .get('/api/v1/photo/')
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(422);
@@ -265,8 +265,8 @@ describe('API Routes', () => {
     it('should return error message if there is no photo with that nasa_id', () => {
       return chai.request(server)
         .get('/api/v1/photo?nasa_id=1')
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(404);
@@ -278,8 +278,8 @@ describe('API Routes', () => {
     it('should return 404 status if the url is mistyped', () => {
       return chai.request(server)
         .get('/api/v1/phoasd')
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          console.log('response');
         })
         .catch(response => {
           response.should.have.status(404);
@@ -310,8 +310,8 @@ describe('API Routes', () => {
         .send({
           name: 'newcam'
         })
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(422);
@@ -327,8 +327,8 @@ describe('API Routes', () => {
         .send({
           full_name: 'New Camera'
         })
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(422);
@@ -364,8 +364,8 @@ describe('API Routes', () => {
           sol: 12,
           nasa_id: 1
         })
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(422);
@@ -383,8 +383,8 @@ describe('API Routes', () => {
           sol: 12,
           nasa_id: 1
         })
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(422);
@@ -449,8 +449,8 @@ describe('API Routes', () => {
         .send({
           name: 'changed name'
         })
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(404);
@@ -520,8 +520,8 @@ describe('API Routes', () => {
         .send({
           earth_date: 1
         })
-        .then(response => {
-          console.log('response', response);
+        .then(() => {
+          console.log('response');
         })
         .catch(error => {
           error.response.should.have.status(404);
