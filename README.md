@@ -100,6 +100,7 @@ Sample response:
 `GET /api/v1/photo?{nasa_id}`
 
 Parameters:
+
 | Name | Type | Description |
 |------|------|-------------|
 | nasa_id | integer | To find a valid nasa_id, GET /api/v1/photos |
@@ -126,11 +127,74 @@ Sample response:
 Send your JWT in the header of the request with the key "token".
 
 Send the following parameters in the body:
+
 | Name | Type | Description |
 |------|---- |---------------|
 | name | string | Name of the new camera |
 | full_name | string | Full name of the new camera |
 
+Sample response:
+
+```
+{
+    "id": 100
+}
+```
+
+`POST /api/v1/photos`
+
+Send your JWT in the header of the request with the key "token".
+
+Send the following parameters in the body:
+
+| Name | Type | Description |
+|------|---- |---------------|
+| img_src | string | Path of the image |
+| earth_date | string | When the photo was taken |
+| sol | integer | Martian days since Curiosity landed |
+| nasa_id | integer | Nasa ID of the photo |
+
+Sample response: 
+```
+{
+    "id": 100
+}
+```
+
 ### Patch Endpoints (JWT Authorization Required):
+`PATCH /api/v1/cameras/:cameraID`
+
+Send your JWT in the header of the request with the key "token".
+
+Send the parameter you would like to update in the body of the request.
+
+Sample response:
+```
+{
+    "success": "Updated camera 5838's name."
+}
+```
+
+`PATCH /api/v1/photos/:photoID`
+
+Send your JWT in the header of the request with the key "token".
+
+Send the parameter you would like to update in the body of the request.
+
+Sample response:
+```
+{
+    "success": "Updated photo 176255's earth_date."
+}
+```
 
 ### Delete Endpoints (JWT Authorization Required):
+`DELETE /api/v1/photos/:id`
+
+Send your JWT in the header of the request with the key "token".
+Returns a 204 status code.
+
+`DELETE /api/v1/cameras/:id`
+
+Send your JWT in the header of the request with the key "token".
+Returns a 204 status code.
