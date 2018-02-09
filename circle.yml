@@ -9,5 +9,5 @@ environment:
 
 database:
   override:
-    - sudo -u postgres psql -p 5432 -c "create database curiosity_tests;"
+    - sudo -u postgres psql -p 5432 -c "CREATE DATABASE curiosity_tests;"
     - knex migrate:latest
