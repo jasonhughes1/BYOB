@@ -5,12 +5,12 @@ machine:
     version: 8.1.2
 
 environment:
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/curiosity
+  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/curiosity_tests
 
 database:
   override:
-    - createdb curiosity
-    - knex migrate:latest --env dev
+    - createdb curiosity_tests
+    - knex migrate:latest
     - npm run eslint
 
 deployment:
