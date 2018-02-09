@@ -5,7 +5,7 @@ machine:
     version: 8.1.2
 
 environment:
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/curiosity_tests
+  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/curiosity
 
 database:
   override:
